@@ -19,5 +19,5 @@ jobs:
       -
         name: Run tests in Docker Container
         uses: actions/checkout@v2
-      - run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend -f Dockerfile.dev
+      - run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend -f Dockerfile.dev .
       - run: docker run -e CI=true ${{ secrets.DOCKER_USERNAME }}/frontend npm test
