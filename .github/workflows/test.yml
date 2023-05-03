@@ -1,0 +1,23 @@
+name: run-tests-feature-branch
+
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      -
+        name: Run tests in Docker Container
+        uses: actions/checkout@v2
+      - run: docker build -t ${{ secrets.DOCKER_USERNAME }}/frontend -f Dockerfile.dev
+      - run: docker run -e CI=true ${{ secrets.DOCKER_USERNAME }}/frontend npm test
