@@ -31,7 +31,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           region: us-east-1
           version_label: ${{ github.sha }}
-          application_name: DockerFrontend
-          environment_name: DockerFrontend-env
+          application_name: docker-example
+          environment_name: docker-example-env
           existing_bucket_name: elasticbeanstalk-us-east-1-319633945198
           deployment_package: deploy.zip
